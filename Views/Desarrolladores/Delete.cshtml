@@ -1,0 +1,37 @@
+﻿@model GAMER.Models.Desarrollador
+
+@{
+    ViewData["Title"] = "Eliminar Desarrollador";
+}
+
+<h1 class="text-center mb-4">Eliminar Desarrollador</h1>
+
+<div class="card shadow-sm text-center mx-auto" style="max-width: 600px;">
+    <div class="card-body bg-black text-white">
+        <h3 class="text-danger text-center mb-4">¿Estás seguro de que deseas eliminar este desarrollador?</h3>
+        <h4 class="card-title mb-3">Detalles</h4>
+        <dl class="row justify-content-center">
+            <dt class="col-sm-4 font-weight-bold">
+                @Html.DisplayNameFor(model => model.Nombre)
+            </dt>
+            <dd class="col-sm-8">
+                @Html.DisplayFor(model => model.Nombre)
+            </dd>
+
+            <dt class="col-sm-4 font-weight-bold">
+                @Html.DisplayNameFor(model => model.Pais)
+            </dt>
+            <dd class="col-sm-8">
+                @Html.DisplayFor(model => model.Pais)
+            </dd>
+        </dl>
+        <div class="text-center mt-4">
+            <form asp-action="Delete" method="post" class="d-inline">
+                <input type="hidden" asp-for="Id" />
+                <button type="submit" value="Delete" class="btn btn-danger btn-lg">Eliminar</button>
+            </form>
+            <a asp-action="Index" class="btn btn-secondary btn-lg ml-3">Volver a la lista</a>
+        </div>
+    </div>
+</div>
+

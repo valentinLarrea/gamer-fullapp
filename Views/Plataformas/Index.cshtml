@@ -1,0 +1,39 @@
+﻿@model IEnumerable<GAMER.Models.Plataforma>
+
+@{
+    ViewData["Title"] = "Plataformas";
+}
+
+<h1 class="text-center text-white">@ViewData["Title"]</h1>
+
+<div class="row">
+    @if (User.Identity.IsAuthenticated)
+    {
+        <div class="col-md-12 text-center mb-4">
+            <a asp-action="Create" class="btn btn-danger">Cargar plataforma</a>
+        </div>
+    }
+</div>
+<div class="row">
+    @foreach (var plataforma in Model)
+    {
+        <div class="col-md-4 mb-4">
+            <div class="card shadow-sm" style="background-color: #000; color: #fff;">
+                <div class="card-body">
+                    <h5 class="card-title text-uppercase" style="color: #fff;">@plataforma.Tipo</h5>
+
+                    <div class="mt-3">
+                        <a asp-action="Details" asp-route-id="@plataforma.Id" class="btn btn-outline-primary">Detalles</a>
+
+                        @if (User.Identity.IsAuthenticated)
+                        {
+                            <a asp-action="Edit" asp-route-id="@plataforma.Id" class="btn btn-outline-warning">Editar</a>
+                            <a asp-action="Delete" asp-route-id="@plataforma.Id" class="btn btn-outline-danger">Eliminar</a>
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+</div>
+

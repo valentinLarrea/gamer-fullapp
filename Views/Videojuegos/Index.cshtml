@@ -1,0 +1,72 @@
+﻿@model IEnumerable<GAMER.Models.Videojuego>
+
+@{
+    ViewData["Title"] = "Videojuegos";
+}
+
+<h1 class="text-center text-white">@ViewData["Title"]</h1>
+
+<form asp-action="Index" method="get">
+    <div class="form-row justify-content-center mb-4">
+        <div class="col-md-12">
+            <div class="form-group">
+                <input type="text" name="nombreBuscado" class="form-control" placeholder="Buscar videojuegos por nombre..." value="@ViewData["Busqueda"]" />
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="form-group">
+                <label for="generoId" class="text-light">Buscar por Género..</label>
+                <select name="generoId" class="form-control" asp-items="@(ViewData["GeneroId"] as SelectList)">
+                    <option value="">Seleccione un género</option>
+                </select>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="form-group">
+                <label for="plataformaId" class="text-light">Buscar por Plataforma..</label>
+                <select name="plataformaId" class="form-control" asp-items="@(ViewData["PlataformaId"] as SelectList)">
+                    <option value="">Seleccione una plataforma</option>
+                </select>
+            </div>
+        </div>
+    </div>
+    <div class="form-row mb-4">
+        <div class="col-md-6">
+            <button type="submit" class="btn btn-outline-primary btn-block">Buscar</button>
+        </div>
+        @if (User.Identity.IsAuthenticated)
+        {
+            <div class="col-md-6 mt-1">
+                <p>
+                    <a asp-action="Create" class="btn btn-primary btn-block">Cargar videojuego</a>
+                </p>
+            </div>
+        }
+    </div>
+</form>
+
+<div class="row">
+    @foreach (var videojuego in Model)
+    {
+        <div class="col-md-4 mb-4">
+            <div class="card" style="background-color: #000; color: #fff;">
+                <img src="@(!string.IsNullOrEmpty(videojuego.Imagen) ? videojuego.Imagen : "https://via.placeholder.com/150")"
+                     class="card-img-top"
+                     alt="Imagen de @videojuego.Titulo"
+                     style="object-fit: cover; height: 250px;" />
+                <div class="card-body">
+                    <h5 class="card-title text-uppercase" style="color: #fff;">@videojuego.Titulo</h5>
+                    <p class="card-text" style="color: #aaa;">@videojuego.Sinopsis</p>
+                    <a asp-action="Details" asp-route-id="@videojuego.Id" class="btn btn-outline-primary">Detalles</a>
+
+                    @if (User.Identity.IsAuthenticated)
+                    {
+                        <a asp-action="Edit" asp-route-id="@videojuego.Id" class="btn btn-outline-warning">Editar</a>
+                        <a asp-action="Delete" asp-route-id="@videojuego.Id" class="btn btn-outline-danger">Eliminar</a>
+                    }
+                </div>
+            </div>
+        </div>
+    }
+</div>
+

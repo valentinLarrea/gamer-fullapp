@@ -1,0 +1,32 @@
+﻿@model GAMER.Models.Desarrollador
+
+@{
+    ViewData["Title"] = "Detalles del Desarrollador";
+}
+
+<h1 class="text-center mb-4">Detalles del Desarrollador</h1>
+
+<div class="card shadow-sm text-center mx-auto" style="max-width: 600px;">
+    <div class="card-body bg-black text-white">
+        <h4 class="card-title mb-3">Información</h4>
+        <dl class="row justify-content-center">
+            <dt class="col-sm-4 font-weight-bold">
+                @Html.DisplayNameFor(model => model.Nombre)
+            </dt>
+            <dd class="col-sm-8">
+                @Html.DisplayFor(model => model.Nombre)
+            </dd>
+            <dt class="col-sm-4 font-weight-bold">
+                @Html.DisplayNameFor(model => model.Pais)
+            </dt>
+            <dd class="col-sm-8">
+                @Html.DisplayFor(model => model.Pais)
+            </dd>
+        </dl>
+        <div class="text-center mt-4">
+            <a asp-action="Edit" asp-route-id="@Model?.Id" class="btn btn-warning btn-sm mr-2">Editar</a>
+            <a asp-action="Index" class="btn btn-secondary btn-sm">Volver a la lista</a>
+        </div>
+    </div>
+</div>
+

@@ -1,0 +1,25 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+<h2 class="text-center text-light">ÚLTIMOS AGREGADOS</h2>
+
+<div class="row bg-dark">
+    @foreach (var videojuego in Model)
+    {
+        <div class="col-md-4">
+            <div class="card mb-4 shadow" style="background-color: #000; color: #fff; border: none; box-shadow: 0 4px 8px rgba(255, 255, 255, 0.2);">
+                <a asp-controller="Videojuegos" asp-action="Details" asp-route-id="@videojuego.Id" target="_blank">
+                    <img src="@(!string.IsNullOrEmpty(videojuego.Imagen) ? videojuego.Imagen : "https://via.placeholder.com/150")"
+                         class="card-img-top"
+                         alt="Imagen de @videojuego.Titulo"
+                         style="object-fit: cover; height: 380px;" />
+                </a>
+                <div class="card-body">
+                    <h5 class="card-title text-uppercase">@videojuego.Titulo</h5>
+                    <p class="card-text" style="color: #aaa;">@videojuego.Sinopsis</p>
+                </div>
+            </div>
+        </div>
+    }
+</div>

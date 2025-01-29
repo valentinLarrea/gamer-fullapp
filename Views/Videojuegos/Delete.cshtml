@@ -1,0 +1,62 @@
+﻿@model GAMER.Models.Videojuego
+
+@{
+    ViewData["Title"] = "Eliminar";
+}
+
+<h1 class="text-center mb-4">Eliminar Videojuego</h1>
+<div class="card shadow-sm text-center mx-auto" style="max-width: 600px;">
+    <div class="card-body bg-black text-white">
+        <h3 class="text-danger text-center mb-4">¿Estás seguro de que deseas eliminar este videojuego?</h3>
+        <h4 class="card-title mb-3">Detalles</h4>
+        <dl class="row justify-content-center">
+            <dt class="col-sm-4 font-weight-bold">
+                @Html.DisplayNameFor(model => model.Titulo)
+            </dt>
+            <dd class="col-sm-8">
+                @Html.DisplayFor(model => model.Titulo)
+            </dd>
+            <dt class="col-sm-4 font-weight-bold">
+                @Html.DisplayNameFor(model => model.Sinopsis)
+            </dt>
+            <dd class="col-sm-8">
+                @Html.DisplayFor(model => model.Sinopsis)
+            </dd>
+            <dt class="col-sm-4 font-weight-bold">
+                @Html.DisplayNameFor(model => model.Imagen)
+            </dt>
+            <dd class="col-sm-8">
+                @if (Model.Imagen != null)
+                {
+                    <img src="@Url.Content(Model.Imagen)" alt="Imagen del videojuego" class="img-fluid rounded" style="max-width: 200px;" />
+                }
+                else
+                {
+                    <p>No hay imagen disponible</p>
+                }
+            </dd>
+            <dt class="col-sm-4 font-weight-bold">
+                @Html.DisplayNameFor(model => model.Genero)
+            </dt>
+            <dd class="col-sm-8">
+                @Html.DisplayFor(model => model.Genero.Descripcion)
+            </dd>
+
+            <dt class="col-sm-4 font-weight-bold">
+                @Html.DisplayNameFor(model => model.Desarrollador)
+            </dt>
+            <dd class="col-sm-8">
+                @Html.DisplayFor(model => model.Desarrollador.Nombre)
+            </dd>
+        </dl>
+        <div class="text-center mt-4">
+            <form asp-action="Delete" method="post" class="d-inline">
+                <input type="hidden" asp-for="Id" />
+                <button type="submit" value="Delete" class="btn btn-danger btn-lg">Eliminar</button>
+            </form>
+            <a asp-action="Index" class="btn btn-secondary btn-lg ml-3">Volver a la lista</a>
+        </div>
+    </div>
+</div>
+
+

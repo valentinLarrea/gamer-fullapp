@@ -1,0 +1,76 @@
+﻿@model GAMER.Models.Videojuego
+
+@{
+    ViewData["Title"] = "Detalles del Videojuego";
+}
+
+<h1 class="text-center mb-4">Detalles del Videojuego</h1>
+
+<div class="card shadow-sm text-center mx-auto" style="max-width: 600px;">
+    <div class="card-body bg-black text-white">
+        <h4 class="card-title mb-3">Información</h4>
+        <dl class="row justify-content-center">
+            <dt class="col-sm-4 font-weight-bold">
+                @Html.DisplayNameFor(model => model.Titulo)
+            </dt>
+            <dd class="col-sm-8">
+                @Html.DisplayFor(model => model.Titulo)
+            </dd>
+            <dt class="col-sm-4 font-weight-bold">
+                @Html.DisplayNameFor(model => model.Sinopsis)
+            </dt>
+            <dd class="col-sm-8">
+                @Html.DisplayFor(model => model.Sinopsis)
+            </dd>
+            <dt class="col-sm-4 font-weight-bold">
+                @Html.DisplayNameFor(model => model.Imagen)
+            </dt>
+            <dd class="col-sm-8">
+                @if (Model.Imagen != null)
+                {
+                    <img src="@Url.Content(Model.Imagen)" alt="Imagen del videojuego" class="img-fluid rounded" style="max-width: 200px;" />
+                }
+                else
+                {
+                    <p>No hay imagen disponible</p>
+                }
+            </dd>
+            <dt class="col-sm-4 font-weight-bold">
+                @Html.DisplayNameFor(model => model.Genero)
+            </dt>
+            <dd class="col-sm-8">
+                @Html.DisplayFor(model => model.Genero.Descripcion)
+            </dd>
+            <dt class="col-sm-4 font-weight-bold">
+                @Html.DisplayNameFor(model => model.Desarrollador)
+            </dt>
+            <dd class="col-sm-8">
+                @Html.DisplayFor(model => model.Desarrollador.Nombre)
+            </dd>
+            <dt class="col-sm-4 font-weight-bold">
+                Plataformas
+            </dt>
+            <dd class="col-sm-8">
+                @if (Model.VideojuegoPlataformas != null && Model.VideojuegoPlataformas.Any())
+                {
+                    <ul class="list-unstyled">
+                        @foreach (var plataforma in Model.VideojuegoPlataformas)
+                        {
+                            <li>@plataforma.Plataforma.Tipo</li>
+                        }
+                    </ul>
+                }
+                else
+                {
+                    <p>No hay plataformas disponibles</p>
+                }
+            </dd>
+        </dl>
+        <div class="text-center">
+            <a asp-action="Edit" asp-route-id="@Model?.Id" class="btn btn-warning btn-sm mr-2">Editar</a>
+            <a asp-action="Index" class="btn btn-secondary btn-sm">Volver a la lista</a>
+        </div>
+    </div>
+</div>
+
+
